@@ -19,7 +19,7 @@
             
             <section class="sect-divider">
             <h5>State: <span id="stat-state">--</span></h5>
-                <dl class="dl-statTract dl-inline">
+                <dl class="dl-stats dl-inline">
                     <dt>Geography Type</dt>
                     <dd><span id="stat-geography">----</span></dd>
                     <dt>Geography ID</dt>
@@ -31,7 +31,7 @@
             </section>
             <section class="sect-divider">
                 <h5>Schools</h5>
-                <dl id="dl-numLocs" class="dl-inline">
+                <dl class="dl-stats dl-inline">
                     <dt>Total Schools in Geography</dt>
                     <dd><span id="stat-totSchools">----</span></dd>
                     <dt>Number of Schools with Fiber in Geography</dt>
@@ -117,17 +117,19 @@ var ds_sprint_TL = L.mapbox.tileLayer('fcc.vy722o6r');
 var ds_sprint_GL = L.mapbox.gridLayer('fcc.vy722o6r');
 var ds_sprint_GC = L.mapbox.gridControl(ds_sprint_GL, {follow: true});
 
-var ds_tmobile_TL = L.mapbox.tileLayer('fcc.xuwyiudi');
-var ds_tmobile_GL = L.mapbox.gridLayer('fcc.xuwyiudi');
-var ds_tmobile_GC = L.mapbox.gridControl(ds_tmobile_GL, {follow: true});
-
-var ds_vz_TL = L.mapbox.tileLayer('fcc.y9nc23xr');
-var ds_vz_GL = L.mapbox.gridLayer('fcc.y9nc23xr');
-var ds_vz_GC = L.mapbox.gridControl(ds_vz_GL, {follow: true});*/
+*/
 
 var mapHd = {
-  mayor: {
+  'layr-congr': {
     title: 'Congressional District',
+    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.'
+  },
+  'layr-cnty': {
+    title: 'County',
+    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.'
+  },
+  'layr-school': {
+    title: 'School District',
     description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.'
   }
   
@@ -147,9 +149,9 @@ $('.sel').on('click', function(e){
 	activeLayerGroup.addLayer(eval(tileName+"_GC"));*/
 	
 	
-	$('#map-hd').text(mapHd[this.id].title);
-	$('#map-desc').html(mapHd[this.id].description);
-	$('#map-legend').html(mapHd[this.id].legend);
+	$('#map-hd').text(mapDetails[this.id].title);
+	$('#map-desc').html(mapDetails[this.id].description);
+	$('#map-legend').html(mapDetails[this.id].legend);
   
 });
 
@@ -172,11 +174,8 @@ map.gridLayer.on('mousemove',function(o) {
 		$('#stat-fiber').text(data.WITH_FIBER);
 	
 	} else { // Reset the text labels
-		$('#stat-tract').text('---------');
-		$('#stat-cnty').text('------');
-		$('#stat-state, #stat-pcannsup, #stat-rorannsup').text('--');
-		$('#stat-totloc, #stat-totsup').text('----');
-		$('#dl-numLocs').find('span').text('-----');	
+		$('#stat-state').text('--');
+		$('.dl-stats').find('span').text('-----');	
 	}
 
 });      
