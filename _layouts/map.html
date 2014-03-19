@@ -2,53 +2,75 @@
 
 <div id="title" class="container">
   <div class="content">
-    <h3>Measuring Broadband America Mobile Broadband Services</h3>
+    <h3>eRate Map</h3>
+    <ul class="inline">
+      <li><strong>View Schools for:</strong></li>
+      <li><a href='javascript:void(0)' id='layr-congr' class='sel active'>Congressional District</a></li>
+      <li><a href='javascript:void(0)' id='layr-cnty' class='sel inactive'>County</a></li>
+      <li><a href='javascript:void(0)' id='layr-school' class='sel inactive'>School District</a></li>
+    </ul>
   </div>
 </div>
 
 <div id="map-c" class="container">
   <div class="content">
     <div id="map"></div>
-    <ul class="inline">
-      <li><a href='javascript:void(0)' id='mayor' class='sel active'>Overall Participation</a></li>
-    </ul>
-    <ul class="inline">
-      <li><strong>Download Speeds:</strong></li>
-      <li><a href='javascript:void(0)' id='ds_att' class='sel inactive'>ATT</a></li>
-      <li><a href='javascript:void(0)' id='ds_sprint' class='sel inactive'>Sprint</a></li>
-      <li><a href='javascript:void(0)' id='ds_tmobile' class='sel inactive'>T-Mobile</a></li>
-      <li><a href='javascript:void(0)' id='ds_vz' class='sel inactive'>Verizon</a></li>
-      <li><a href='javascript:void(0)' id='ds_all' class='sel inactive'>Combined</a></li>
-    </ul>
+    <div class="data">
+            
+            <section class="sect-divider">
+            <h5>State: <span id="stat-state">--</span></h5>
+                <dl class="dl-statTract dl-inline">
+                    <dt>Geography Type</dt>
+                    <dd><span id="stat-geography">----</span></dd>
+                    <dt>Geography ID</dt>
+                    <dd><span id="stat-geoID">----</span></dd>
+                    <dt>Geography Description</dt>
+                    <dd><span id="stat-geoDesc">----</span></dd>
+                    
+                </dl>
+            </section>
+            <section class="sect-divider">
+                <h5>Schools</h5>
+                <dl id="dl-numLocs" class="dl-inline">
+                    <dt>Total Schools in Geography</dt>
+                    <dd><span id="stat-totSchools">----</span></dd>
+                    <dt>Number of Schools with Fiber in Geography</dt>
+                    <dd><span id="stat-fiber">----</span></dd>
+                    <dt>% of Schools with Fiber in Geography</dt>
+                    <dd><span id="stat-pctSchool">----</span></dd>
+                </dl>
+                
+            </section>
+        </div>
   </div>
 </div>
 
 <div class="container">
   <div class="content">
-    <aside id="map-legend">   
+    <aside id="map-legend">
       <table class="table">
-        <caption>Number of Mobile Tests</caption>
+        <caption>% of Schools with Fiber</caption>
         <tfoot>
           <tr>
-            <td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td>
+            <td colspan="3"><p class="caption">[table footer note]</p></td>
           </tr>
         </tfoot>
         <tbody>
           <tr>
-            <th style="white-space: nowrap;">2 to 9</th>
-            <td><span style="background-color: #f7fcf5"> </span></td>
+            <th style="white-space: nowrap;"> &lt; 25%</th>
+            <td><span style="background-color: #cce0d6"> </span></td>
           </tr>
           <tr>
-            <th style="white-space: nowrap;">10 to 50</th>
-            <td><span style="background-color: #b1dfab"> </span></td>
+            <th style="white-space: nowrap;">&ge; 25% and &lt; 50%</th>
+            <td><span style="background-color: #99c1ad"> </span></td>
           </tr>
           <tr>
-            <th style="white-space: nowrap;">51 to 100</th>
-            <td><span style="background-color: #3da659"> </span></td>
+            <th style="white-space: nowrap;">&ge; 50% and &lt; 75%</th>
+            <td><span style="background-color: #4c9370"> </span></td>
           </tr>
           <tr>
-            <th style="white-space: nowrap;">above 100</th>
-            <td><span style="background-color: #00441b"> </span></td>
+            <th style="white-space: nowrap;">&ge; 75%</th>
+            <td><span style="background-color: #006633"> </span></td>
           </tr>
         </tbody>
       </table>
@@ -63,8 +85,10 @@
 </div>
    
 <script>
-var map = L.mapbox.map('map', 'fcc.map-kzt95hy6', {attributionControl: false,maxZoom:8})
-            .setView([38.82, -94.96], 4);
+/*var map = L.mapbox.map('map', 'fcc.map-kzt95hy6', {attributionControl: false,maxZoom:8})
+            .setView([38.82, -94.96], 4);*/
+var map = L.mapbox.map('map', 'computech.hi9pi15i', {attributionControl: false, gridControl: false, maxZoom:8})
+            .setView([38.82, -94.96], 3);
 map.scrollWheelZoom.disable();
 
 var hash = L.hash(map);
@@ -77,7 +101,7 @@ var mayor_GL = L.mapbox.gridLayer('fcc.xtwng66r')
 var mayor_GC = L.mapbox.gridControl(mayor_GL, {follow: true})//.addTo(map);
 var tileName = "mayor";
 
-activeLayerGroup.addLayer(mayor_TL);
+/*activeLayerGroup.addLayer(mayor_TL);
 activeLayerGroup.addLayer(mayor_GL);
 activeLayerGroup.addLayer(mayor_GC);
 activeLayerGroup.addTo(map,function(){console.log('done')});
@@ -89,18 +113,18 @@ var ds_all_GC = L.mapbox.gridControl(ds_all_GL, {follow: true});
 var ds_att_TL = L.mapbox.tileLayer('fcc.0novfgvi');
 var ds_att_GL = L.mapbox.gridLayer('fcc.0novfgvi');
 var ds_att_GC = L.mapbox.gridControl(ds_att_GL, {follow: true});
- 
+
 var ds_sprint_TL = L.mapbox.tileLayer('fcc.vy722o6r');
 var ds_sprint_GL = L.mapbox.gridLayer('fcc.vy722o6r');
 var ds_sprint_GC = L.mapbox.gridControl(ds_sprint_GL, {follow: true});
- 
+
 var ds_tmobile_TL = L.mapbox.tileLayer('fcc.xuwyiudi');
 var ds_tmobile_GL = L.mapbox.gridLayer('fcc.xuwyiudi');
 var ds_tmobile_GC = L.mapbox.gridControl(ds_tmobile_GL, {follow: true});
- 
+
 var ds_vz_TL = L.mapbox.tileLayer('fcc.y9nc23xr');
 var ds_vz_GL = L.mapbox.gridLayer('fcc.y9nc23xr');
-var ds_vz_GC = L.mapbox.gridControl(ds_vz_GL, {follow: true});
+var ds_vz_GC = L.mapbox.gridControl(ds_vz_GL, {follow: true});*/
 
 var mapHd = {
   mayor: {
@@ -111,22 +135,22 @@ var mapHd = {
   ds_all: {
     title: 'Median Speeds - Combined',
     description: 'This map represents the median mobile download speed for tests collected to date on all networks by the FCC Mobile Speed Test app. These are early results, and the maps are a work in progress. The intent is to show preliminary activity from the project. Crowdsourced maps evolve and change over time as more users participate in the program; to contribute your results, download the FCC Speed Test app from the <a href="https://play.google.com/store/apps/details?id=com.samknows.fcc&hl=en" target="_new">Google Play</a> or <a href="https://itunes.apple.com/us/app/fcc-speed-test/id794322383?mt=8&uo=4" target="_new">iTunes app store</a>.',
-    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#dfcfc0"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#e9af78"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#f79030"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#df5900"></span></td></tr></tbody></table>'  
+    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#dfcfc0"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#e9af78"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#f79030"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#df5900"></span></td></tr></tbody></table>'
   },
   ds_att: {
     title: 'Median Speeds - AT&T',
     description: 'This map represents the median mobile download speed for tests collected to date on the AT&T network by the FCC Mobile Speed Test app. These are early results, and the maps are a work in progress. The intent is to show preliminary activity from the project. Crowdsourced maps evolve and change over time as more users participate in the program; to contribute your results, download the FCC Speed Test app from the <a href="https://play.google.com/store/apps/details?id=com.samknows.fcc&hl=en" target="_new">Google Play</a> or <a href="https://itunes.apple.com/us/app/fcc-speed-test/id794322383?mt=8&uo=4" target="_new">iTunes app store</a>.',
-    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#BBBDBF"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#afd1e7"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#3d8dc3"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#08306b"></span></td></tr><tr><th style="white-space:nowrap;">Too few tests</th><td><span style="border: 1px solid #08306b;"></span></td></tr></tbody></table>'  
+    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#BBBDBF"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#afd1e7"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#3d8dc3"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#08306b"></span></td></tr><tr><th style="white-space:nowrap;">Too few tests</th><td><span style="border: 1px solid #08306b;"></span></td></tr></tbody></table>'
   },
   ds_sprint: {
     title: 'Median Speeds - Sprint',
     description: 'This map represents the median mobile download speed for tests collected to date on the Sprint network by the FCC Mobile Speed Test app. These are early results, and the maps are a work in progress. The intent is to show preliminary activity from the project. Crowdsourced maps evolve and change over time as more users participate in the program; to contribute your results, download the FCC Speed Test app from the <a href="https://play.google.com/store/apps/details?id=com.samknows.fcc&hl=en" target="_new">Google Play</a> or <a href="https://itunes.apple.com/us/app/fcc-speed-test/id794322383?mt=8&uo=4" target="_new">iTunes app store</a>.',
-    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#CECFCD"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#777877"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#505150"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#141313"></span></td></tr><tr><th style="white-space:nowrap;">Too few tests</th><td><span style="border: 1px solid #141313;"></span></td></tr></tbody></table>'  
+    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#CECFCD"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#777877"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#505150"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#141313"></span></td></tr><tr><th style="white-space:nowrap;">Too few tests</th><td><span style="border: 1px solid #141313;"></span></td></tr></tbody></table>'
   },
   ds_tmobile: {
     title: 'Median Speeds - T-Mobile',
     description: 'This map represents the median mobile download speed for tests collected to date on the T-Mobile network by the FCC Mobile Speed Test app. These are early results, and the maps are a work in progress. The intent is to show preliminary activity from the project. Crowdsourced maps evolve and change over time as more users participate in the program; to contribute your results, download the FCC Speed Test app from the <a href="https://play.google.com/store/apps/details?id=com.samknows.fcc&hl=en" target="_new">Google Play</a> or <a href="https://itunes.apple.com/us/app/fcc-speed-test/id794322383?mt=8&uo=4" target="_new">iTunes app store</a>.',
-    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#ffe3f0"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#ff99e3"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#ff4fd6"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#b5048f"></span></td></tr><tr><th style="white-space:nowrap;">Too few tests</th><td><span style="border: 1px solid #b5048f;"></span></td></tr></tbody></table>'  
+    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#ffe3f0"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#ff99e3"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#ff4fd6"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#b5048f"></span></td></tr><tr><th style="white-space:nowrap;">Too few tests</th><td><span style="border: 1px solid #b5048f;"></span></td></tr></tbody></table>'
   },
   ds_vz: {
     title: 'Median Speeds - Verizon',
@@ -142,21 +166,58 @@ d3.selectAll(".sel").on("click", function(){
     d3.select('.map-legend').remove();
     d3.selectAll(".sel").attr("class","sel inactive");
     d3.select(this).attr("class","sel active");
-    
+
     tileName = d3.select(this).attr("id");
     activeLayerGroup.clearLayers();
-     
-    activeLayerGroup.addLayer(eval(tileName+"_TL"));
+
+    /*activeLayerGroup.addLayer(eval(tileName+"_TL"));
     activeLayerGroup.addLayer(eval(tileName+"_GL"));
-    activeLayerGroup.addLayer(eval(tileName+"_GC"));
-    
-  
+    activeLayerGroup.addLayer(eval(tileName+"_GC"));*/
+
+
     d3.select('#map-hd').text(mapHd[this.id].title);
     d3.select('#map-desc').html(mapHd[this.id].description);
-    d3.select('#map-legend').html(mapHd[this.id].legend);   
+    d3.select('#map-legend').html(mapHd[this.id].legend);
   }
 });
- 
+
+// Display the map tooltip in the sidebar
+map.gridLayer.on('mousemove',function(o) {
+	   
+	var data;
+console.log(o);
+	if (o.data != undefined) {
+	   data = o.data;   
+	   
+		// Populate location other stats (teaser fields from map)
+		$('#stat-geography').text(data.GEOGRAPHY_);
+		$('#stat-geoID').text(data.GEOGRAP_01);
+		$('#stat-geoDesc').text(data.GEOGRAP_02);
+		$('#stat-state').text(data.STATEABBR);		
+		$('#stat-pctSchool').text(data.PCT_SCHOOL);
+		$('#stat-totSchools').text(data.TOTAL_SCHO);
+		$('#stat-fiber').text(data.WITH_FIBER);
+		
+		// Additional Cost Stats (teaser fields from map)		
+		/*$('#stat-pclocbtwn').text(data.pc_locations_between);
+		$('#stat-rorlocbtwn').text(data.ror_locations_between);
+		$('#stat-pclocabv').text(data.pc_locations_above_ttc);
+		$('#stat-rorlocabv').text(data.ror_locations_above_ttc);
+		$('#stat-pcannsup').text(formatComma(data.pc_annual_support));
+		$('#stat-rorannsup').text(formatComma(data.ror_annual_support));*/
+	
+	
+	} else { // Reset the text labels
+		$('#stat-tract').text('---------');
+		$('#stat-cnty').text('------');
+		$('#stat-state, #stat-pcannsup, #stat-rorannsup').text('--');
+		$('#stat-totloc, #stat-totsup').text('----');
+		$('#dl-numLocs').find('span').text('-----');	
+	}
+
+});      
+
+
 </script>
 
 {% include footer.html %}
