@@ -5,9 +5,9 @@
     <h3>eRate Map</h3>
     <ul class="inline">
       <li><strong>View Schools for:</strong></li>
-      <li><a href='javascript:void(0)' id='layr-congr' class='sel active'>Congressional District</a></li>
-      <li><a href='javascript:void(0)' id='layr-cnty' class='sel inactive'>County</a></li>
-      <li><a href='javascript:void(0)' id='layr-school' class='sel inactive'>School District</a></li>
+      <li><a href="javascript:void(0)" id="layr-congr" class="sel active">Congressional District</a></li>
+      <li><a href="javascript:void(0)" id="layr-cnty" class="sel">County</a></li>
+      <li><a href="javascript:void(0)" id="layr-school" class="sel">School District</a></li>
     </ul>
   </div>
 </div>
@@ -75,15 +75,15 @@
         </tbody>
       </table>
     </aside>
-    <h5 id="map-hd">FCC Mobile Speed Test</h5>
-    <p id="map-desc">This map represents the number of mobile speed tests collected to date on all networks by the FCC Mobile Speed Test app. These are early results, and the maps are a work in progress. The intent is to show preliminary activity from the project. Crowdsourced maps evolve and change over time as more users participate in the program; to contribute your results, download the FCC Speed Test app from the <a href="https://play.google.com/store/apps/details?id=com.samknows.fcc&hl=en" target="google_play">Google Play</a> or <a href="https://itunes.apple.com/us/app/fcc-speed-test/id794322383?mt=8&uo=4" target="app_store">iTunes app store</a>.</p> 
+   <h5 id="map-hd">eRate Map</h5>
+    <p id="map-desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.</p>
 
     <hr>
 
     {{ content }}    
   </div>
 </div>
-   
+<script src="http://code.jquery.com/jquery-1.10.2.min.js" type="application/javascript"></script>   
 <script>
 /*var map = L.mapbox.map('map', 'fcc.map-kzt95hy6', {attributionControl: false,maxZoom:8})
             .setView([38.82, -94.96], 4);*/
@@ -93,13 +93,12 @@ map.scrollWheelZoom.disable();
 
 var hash = L.hash(map);
 L.control.fullscreen().addTo(map);
-var activeLayerGroup = new L.LayerGroup();
+/*var activeLayerGroup = new L.LayerGroup();
 var mayor_TL = L.mapbox.tileLayer('fcc.xtwng66r')
-                    .on('load',function(){/* REMOVE LEGEND  map.legendControl.addLegend(mayor_TL.getTileJSON().legend);*/
-                                        mayor_TL.removeEventListener();})
+                    .on('load',function(){ mayor_TL.removeEventListener();})
 var mayor_GL = L.mapbox.gridLayer('fcc.xtwng66r')
 var mayor_GC = L.mapbox.gridControl(mayor_GL, {follow: true})//.addTo(map);
-var tileName = "mayor";
+var tileName = "mayor";*/
 
 /*activeLayerGroup.addLayer(mayor_TL);
 activeLayerGroup.addLayer(mayor_GL);
@@ -128,64 +127,36 @@ var ds_vz_GC = L.mapbox.gridControl(ds_vz_GL, {follow: true});*/
 
 var mapHd = {
   mayor: {
-    title: 'FCC Mobile Speed Test',
-    description: 'This map represents the number of mobile speed tests collected to date on all networks by the FCC Mobile Speed Test app. These are early results, and the maps are a work in progress. The intent is to show preliminary activity from the project. Crowdsourced maps evolve and change over time as more users participate in the program; to contribute your results, download the FCC Speed Test app from the <a href="https://play.google.com/store/apps/details?id=com.samknows.fcc&hl=en" target="_new">Google Play</a> or <a href="https://itunes.apple.com/us/app/fcc-speed-test/id794322383?mt=8&uo=4" target="_new">iTunes app store</a>.',
-    legend: '<table class="table"><caption>Number of Mobile Tests</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">2 to 9</th><td><span style="background-color:#f7fcf5"></span></td></tr><tr><th style="white-space:nowrap;">10 to 50</th><td><span style="background-color:#b1dfab"></span></td></tr><tr><th style="white-space:nowrap;">51 to 100</th><td><span style="background-color:#3da659"></span></td></tr><tr><th style="white-space:nowrap;">above 100</th><td><span style="background-color:#00441b"></span></td></tr></tbody></table>'
-  },
-  ds_all: {
-    title: 'Median Speeds - Combined',
-    description: 'This map represents the median mobile download speed for tests collected to date on all networks by the FCC Mobile Speed Test app. These are early results, and the maps are a work in progress. The intent is to show preliminary activity from the project. Crowdsourced maps evolve and change over time as more users participate in the program; to contribute your results, download the FCC Speed Test app from the <a href="https://play.google.com/store/apps/details?id=com.samknows.fcc&hl=en" target="_new">Google Play</a> or <a href="https://itunes.apple.com/us/app/fcc-speed-test/id794322383?mt=8&uo=4" target="_new">iTunes app store</a>.',
-    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#dfcfc0"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#e9af78"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#f79030"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#df5900"></span></td></tr></tbody></table>'
-  },
-  ds_att: {
-    title: 'Median Speeds - AT&T',
-    description: 'This map represents the median mobile download speed for tests collected to date on the AT&T network by the FCC Mobile Speed Test app. These are early results, and the maps are a work in progress. The intent is to show preliminary activity from the project. Crowdsourced maps evolve and change over time as more users participate in the program; to contribute your results, download the FCC Speed Test app from the <a href="https://play.google.com/store/apps/details?id=com.samknows.fcc&hl=en" target="_new">Google Play</a> or <a href="https://itunes.apple.com/us/app/fcc-speed-test/id794322383?mt=8&uo=4" target="_new">iTunes app store</a>.',
-    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#BBBDBF"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#afd1e7"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#3d8dc3"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#08306b"></span></td></tr><tr><th style="white-space:nowrap;">Too few tests</th><td><span style="border: 1px solid #08306b;"></span></td></tr></tbody></table>'
-  },
-  ds_sprint: {
-    title: 'Median Speeds - Sprint',
-    description: 'This map represents the median mobile download speed for tests collected to date on the Sprint network by the FCC Mobile Speed Test app. These are early results, and the maps are a work in progress. The intent is to show preliminary activity from the project. Crowdsourced maps evolve and change over time as more users participate in the program; to contribute your results, download the FCC Speed Test app from the <a href="https://play.google.com/store/apps/details?id=com.samknows.fcc&hl=en" target="_new">Google Play</a> or <a href="https://itunes.apple.com/us/app/fcc-speed-test/id794322383?mt=8&uo=4" target="_new">iTunes app store</a>.',
-    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#CECFCD"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#777877"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#505150"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#141313"></span></td></tr><tr><th style="white-space:nowrap;">Too few tests</th><td><span style="border: 1px solid #141313;"></span></td></tr></tbody></table>'
-  },
-  ds_tmobile: {
-    title: 'Median Speeds - T-Mobile',
-    description: 'This map represents the median mobile download speed for tests collected to date on the T-Mobile network by the FCC Mobile Speed Test app. These are early results, and the maps are a work in progress. The intent is to show preliminary activity from the project. Crowdsourced maps evolve and change over time as more users participate in the program; to contribute your results, download the FCC Speed Test app from the <a href="https://play.google.com/store/apps/details?id=com.samknows.fcc&hl=en" target="_new">Google Play</a> or <a href="https://itunes.apple.com/us/app/fcc-speed-test/id794322383?mt=8&uo=4" target="_new">iTunes app store</a>.',
-    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#ffe3f0"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#ff99e3"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#ff4fd6"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#b5048f"></span></td></tr><tr><th style="white-space:nowrap;">Too few tests</th><td><span style="border: 1px solid #b5048f;"></span></td></tr></tbody></table>'
-  },
-  ds_vz: {
-    title: 'Median Speeds - Verizon',
-    description: 'This map represents the median mobile download speed for tests collected to date on the Verizon network by the FCC Mobile Speed Test app. These are early results, and the maps are a work in progress. The intent is to show preliminary activity from the project. Crowdsourced maps evolve and change over time as more users participate in the program; to contribute your results, download the FCC Speed Test app from the <a href="https://play.google.com/store/apps/details?id=com.samknows.fcc&hl=en" target="_new">Google Play</a> or <a href="https://itunes.apple.com/us/app/fcc-speed-test/id794322383?mt=8&uo=4" target="_new">iTunes app store</a>.',
-    legend: '<table class="table"><caption>Median Mobile Speed</caption><tfoot><tr><td colspan="3"><p class="caption">Mobile Tests 11/1/13 to 2/28/14</p></td></tr></tfoot><tbody><tr><th style="white-space:nowrap;">&lt; 1 Mbps</th><td><span style="background-color:#f3ccdc"></span></td></tr><tr><th style="white-space:nowrap;">1 to 3 Mbps</th><td><span style="background-color:#f78892"></span></td></tr><tr><th style="white-space:nowrap;">3 to 5 Mbps</th><td><span style="background-color:#d70002"></span></td></tr><tr><th style="white-space:nowrap;">&gt; 5 Mbps</th><td><span style="background-color:#ac0b16"></span></td></tr><tr><th style="white-space:nowrap;">Too few tests</th><td><span style="border: 1px solid #ac0b16;"></span></td></tr></tbody></table>'
+    title: 'Congressional District',
+    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.'
   }
+  
 }
 
-d3.selectAll(".sel").on("click", function(){
-  if (d3.select(this).classed("active")){
-      //do nothing
-  } else {
-    d3.select('.map-legend').remove();
-    d3.selectAll(".sel").attr("class","sel inactive");
-    d3.select(this).attr("class","sel active");
+$('.sel').on('click', function(){
+	tileName = $(this).attr('id');
 
-    tileName = d3.select(this).attr("id");
-    activeLayerGroup.clearLayers();
-
-    /*activeLayerGroup.addLayer(eval(tileName+"_TL"));
-    activeLayerGroup.addLayer(eval(tileName+"_GL"));
-    activeLayerGroup.addLayer(eval(tileName+"_GC"));*/
-
-
-    d3.select('#map-hd').text(mapHd[this.id].title);
-    d3.select('#map-desc').html(mapHd[this.id].description);
-    d3.select('#map-legend').html(mapHd[this.id].legend);
-  }
+	$('.sel').addClass('inactive');
+	$(this).addClass('active').removeClass('inactive');
+	
+	activeLayerGroup.clearLayers();
+	
+	/*activeLayerGroup.addLayer(eval(tileName+"_TL"));
+	activeLayerGroup.addLayer(eval(tileName+"_GL"));
+	activeLayerGroup.addLayer(eval(tileName+"_GC"));*/
+	
+	
+	$('#map-hd').text(mapHd[this.id].title);
+	$('#map-desc').html(mapHd[this.id].description);
+	$('#map-legend').html(mapHd[this.id].legend);
+  
 });
 
-// Display the map tooltip in the sidebar
+// Display the map tooltip below the map
 map.gridLayer.on('mousemove',function(o) {
 	   
 	var data;
-console.log(o);
+
 	if (o.data != undefined) {
 	   data = o.data;   
 	   
@@ -197,15 +168,6 @@ console.log(o);
 		$('#stat-pctSchool').text(data.PCT_SCHOOL);
 		$('#stat-totSchools').text(data.TOTAL_SCHO);
 		$('#stat-fiber').text(data.WITH_FIBER);
-		
-		// Additional Cost Stats (teaser fields from map)		
-		/*$('#stat-pclocbtwn').text(data.pc_locations_between);
-		$('#stat-rorlocbtwn').text(data.ror_locations_between);
-		$('#stat-pclocabv').text(data.pc_locations_above_ttc);
-		$('#stat-rorlocabv').text(data.ror_locations_above_ttc);
-		$('#stat-pcannsup').text(formatComma(data.pc_annual_support));
-		$('#stat-rorannsup').text(formatComma(data.ror_annual_support));*/
-	
 	
 	} else { // Reset the text labels
 		$('#stat-tract').text('---------');
