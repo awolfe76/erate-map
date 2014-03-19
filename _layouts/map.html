@@ -133,11 +133,12 @@ var mapHd = {
   
 }
 
-$('.sel').on('click', function(){
+$('.sel').on('click', function(e){
+	e.preventDefault();
 	tileName = $(this).attr('id');
 
-	$('.sel').addClass('inactive');
-	$(this).addClass('active').removeClass('inactive');
+	$('.sel').removeClass('active');
+	$(this).addClass('active');
 	
 	activeLayerGroup.clearLayers();
 	
@@ -151,6 +152,7 @@ $('.sel').on('click', function(){
 	$('#map-legend').html(mapHd[this.id].legend);
   
 });
+
 
 // Display the map tooltip below the map
 map.gridLayer.on('mousemove',function(o) {
