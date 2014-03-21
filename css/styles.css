@@ -28,10 +28,10 @@ a:hover {
   color:#E53724 /* #E7A024*/;
   text-decoration: underline;
 }
-.sel.active {
+.sel-layer.active {
   border-bottom: 2px solid;
 }
-.sel.active:hover {
+.sel-layer.active:hover {
   text-decoration: none;
 }
 #mayor.sel.active {
