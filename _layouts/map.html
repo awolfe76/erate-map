@@ -5,9 +5,9 @@
     <h3>eRate Map</h3>
     <ul class="inline">
       <li><strong>View Schools for:</strong></li>
-      <li><a href="javascript:void(0)" id="layr-congr" class="sel active">Congressional District</a></li>
-      <li><a href="javascript:void(0)" id="layr-cnty" class="sel">County</a></li>
-      <li><a href="javascript:void(0)" id="layr-school" class="sel">School District</a></li>
+      <li><a href="#void" id="congrDist" class="sel-layer active">Congressional District</a></li>
+      <li><a href="#void" id="cnty" class="sel-layer">County</a></li>
+      <li><a href="#void" id="schoolDist" class="sel-layer">Unified School District</a></li>
     </ul>
   </div>
 </div>
@@ -84,103 +84,6 @@
   </div>
 </div>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="application/javascript"></script>   
-<script>
-/*var map = L.mapbox.map('map', 'fcc.map-kzt95hy6', {attributionControl: false,maxZoom:8})
-            .setView([38.82, -94.96], 4);*/
-var map = L.mapbox.map('map', 'computech.hi9pi15i', {attributionControl: false, gridControl: false, maxZoom:8})
-            .setView([38.82, -94.96], 3);
-map.scrollWheelZoom.disable();
-
-var hash = L.hash(map);
-L.control.fullscreen().addTo(map);
-/*var activeLayerGroup = new L.LayerGroup();
-var mayor_TL = L.mapbox.tileLayer('fcc.xtwng66r')
-                    .on('load',function(){ mayor_TL.removeEventListener();})
-var mayor_GL = L.mapbox.gridLayer('fcc.xtwng66r')
-var mayor_GC = L.mapbox.gridControl(mayor_GL, {follow: true})//.addTo(map);
-var tileName = "mayor";*/
-
-/*activeLayerGroup.addLayer(mayor_TL);
-activeLayerGroup.addLayer(mayor_GL);
-activeLayerGroup.addLayer(mayor_GC);
-activeLayerGroup.addTo(map,function(){console.log('done')});
-
-var ds_all_TL = L.mapbox.tileLayer('fcc.lwok1emi');
-var ds_all_GL = L.mapbox.gridLayer('fcc.lwok1emi');
-var ds_all_GC = L.mapbox.gridControl(ds_all_GL, {follow: true});
-
-var ds_att_TL = L.mapbox.tileLayer('fcc.0novfgvi');
-var ds_att_GL = L.mapbox.gridLayer('fcc.0novfgvi');
-var ds_att_GC = L.mapbox.gridControl(ds_att_GL, {follow: true});
-
-var ds_sprint_TL = L.mapbox.tileLayer('fcc.vy722o6r');
-var ds_sprint_GL = L.mapbox.gridLayer('fcc.vy722o6r');
-var ds_sprint_GC = L.mapbox.gridControl(ds_sprint_GL, {follow: true});
-
-*/
-
-var mapDetails = {
-  'layr-congr': {
-    title: 'Congressional District',
-    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.'
-  },
-  'layr-cnty': {
-    title: 'County',
-    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.'
-  },
-  'layr-school': {
-    title: 'School District',
-    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.'
-  }
-  
-}
-
-$('.sel').on('click', function(e){
-	e.preventDefault();
-	tileName = $(this).attr('id');
-
-	$('.sel').removeClass('active');
-	$(this).addClass('active');
-	
-	/*activeLayerGroup.clearLayers();
-	
-	activeLayerGroup.addLayer(eval(tileName+"_TL"));
-	activeLayerGroup.addLayer(eval(tileName+"_GL"));
-	activeLayerGroup.addLayer(eval(tileName+"_GC"));*/
-	
-	
-	$('#map-hd').text(mapDetails[this.id].title);
-	$('#map-desc').html(mapDetails[this.id].description);
-	$('#map-legend').html(mapDetails[this.id].legend);
-  
-});
-
-
-// Display the map tooltip below the map
-map.gridLayer.on('mousemove',function(o) {
-	   
-	var data;
-
-	if (o.data != undefined) {
-	   data = o.data;   
-	   
-		// Populate location other stats (teaser fields from map)
-		$('#stat-geography').text(data.GEOGRAPHY_);
-		$('#stat-geoID').text(data.GEOGRAP_01);
-		$('#stat-geoDesc').text(data.GEOGRAP_02);
-		$('#stat-state').text(data.STATEABBR);		
-		$('#stat-pctSchool').text(data.PCT_SCHOOL);
-		$('#stat-totSchools').text(data.TOTAL_SCHO);
-		$('#stat-fiber').text(data.WITH_FIBER);
-	
-	} else { // Reset the text labels
-		$('#stat-state').text('--');
-		$('.dl-stats').find('span').text('-----');	
-	}
-
-});      
-
-
-</script>
+<script src="js/map.js"></script>
 
 {% include footer.html %}
