@@ -10,41 +10,26 @@ var cnty_TL = L.mapbox.tileLayer('computech.hj2ghocl'),
 var schoolDist_TL = L.mapbox.tileLayer('computech.hin0bi84'),
 	schoolDist_GL = L.mapbox.gridLayer('computech.hin0bi84'),
 	schoolDist_GC = L.mapbox.gridControl(schoolDist_GL, {follow: false});
-
-
-var mapDetails = {
-  'congrDist': {
-    title: 'Congressional District',
-    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.'
-  },
-  'cnty': {
-    title: 'County',
-    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.'
-  },
-  'schoolDist': {
-    title: 'School District',
-    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.'
-  }
-  
-}
-
-			
+		
 var eRateMap = {
 	init: function() {
 		var map = L.mapbox.map('map').setView([38.82, -94.96], 3),
 			hash = L.hash(map);
 			
 		this.activeLayerGroup = new L.LayerGroup();
-		this.activeLayerGroup.addLayer(congrDist_TL);
-		this.activeLayerGroup.addLayer(congrDist_GL);
-		//this.activeLayerGroup.addLayer(congrDist_GC);
-		this.activeLayerGroup.addTo(map);
+		this.addLayers(map, congrDist_TL, congrDist_GL);
 		
-		L.control.fullscreen().addTo(map);
 		L.mapbox.gridControl(eval(congrDist_GL).on('mousemove', eRateMap.getMapData));
+		L.control.fullscreen().addTo(map);
 		map.scrollWheelZoom.disable();
 		
-		$('.sel-layer').on('click', { map: map }, eRateMap.switchLayer);
+		$('.list-layerSwitch').on('click', 'li', { map: map }, eRateMap.switchLayer);
+	},
+	addLayers: function(map, layer_TL, layer_GL) { 
+		eRateMap.activeLayerGroup.addLayer(layer_TL);
+		eRateMap.activeLayerGroup.addLayer(layer_GL);
+		//eRateMap.activeLayerGroup.addLayer(congrDist_GC);
+		eRateMap.activeLayerGroup.addTo(map);
 	},
 	switchLayer: function(event) {
 		
@@ -52,20 +37,16 @@ var eRateMap = {
 
 		event.preventDefault();
 		
-		$('.sel-layer').removeClass('active');
+		$('.list-layerSwitch').find('.active').removeClass('active');
 		$('#'+tileName).addClass('active');
 		
 		eRateMap.activeLayerGroup.clearLayers();
-		eRateMap.activeLayerGroup.addLayer(eval(tileName + "_TL"));
-		eRateMap.activeLayerGroup.addLayer(eval(tileName + "_GL"));
-		//eRateMap.activeLayerGroup.addLayer(eval(tileName+"_GC"));
-		eRateMap.activeLayerGroup.addTo(event.data.map);
-		
+		eRateMap.addLayers(event.data.map, eval(tileName + "_TL"), eval(tileName + "_GL"));
+
 		L.mapbox.gridControl(eval(tileName + "_GL").on('mousemove', eRateMap.getMapData));
-	
-		$('#map-hd').text(mapDetails[tileName].title);
-		$('#map-desc').html(mapDetails[tileName].description);
-		$('#map-legend').html(mapDetails[tileName].legend);		
+		
+		$('.map-desc').hide();
+		$('#desc-'+tileName).show();	
 	},
 	getMapData: function(o) {
 		var data;
