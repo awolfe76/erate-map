@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
   <head>
     <title>FCC - {{ site.title }}</title>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="{{ site.desc }} - {{ page.desc }}">
@@ -10,12 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     
+    <link href="{{ site.baseurl }}/css/bootstrap.min.css" rel="stylesheet">
     <link href="//api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css" rel="stylesheet">
     <!--[if lte IE 8]>
       <link href="//api.tiles.mapbox.com/mapbox.js/v1.4.0/mapbox.ie.css' rel='stylesheet'>
     <![endif]-->
     <link href="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.1/leaflet.fullscreen.css" rel="stylesheet">
     <link href="{{ site.baseurl }}/css/styles.css" rel="stylesheet">
+    
     <script src="//api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js"></script> 
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v0.0.1/Leaflet.fullscreen.min.js"></script>
@@ -30,19 +32,9 @@
   <body>
     <header>
       <div class="container">
-        <h4 id="logo"><a href="http://fcc.gov">FCC</a> - {{ site.title }}</h4>
-         <div id="menu">
-
-         <nav id="large">
-            <a href="#about">About</a>
-          </nav>
-          <nav class="closed" id="small" style="">
-            <div>
-              <div style="border-radius:20px; background:#ffffff; width:2rem; height:.3rem; margin-bottom:.1rem;"></div>
-              <div style="border-radius:20px; background:#ffffff; width:1rem; height:.3rem; margin-bottom:.1rem;"></div>
-              <div style="border-radius:20px; background:#ffffff; width:1.5rem; height:.3rem;"></div>
-            </div>
-          </nav>
-        </div>
+        <nav class="row">
+	        <h1 class="col-sm-11 col-md-11"><a href="http://fcc.gov">FCC</a></h1>
+	         <a class="col-sm-1 col-md-1" href="#about">About</a>
+        </nav>
       </div>
     </header>
