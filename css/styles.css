@@ -4,7 +4,7 @@
 body { color: #51545B; font-family: "Source Sans Pro"; }
 h2, h3, h4, h5 { color: #212326; font-weight: 600; }
 h1 { font-size: 18px; font-weight: 600; }
-h3 { font-size: 16px; }
+h3 { font-size: 16px; font-weight: 700; }
 h4 { font-size: 16px; margin: 20px 0 0; }
 h5 { font-size: 14px; margin: 20px 0 0; }
 a:link { color: #55A3CA; text-decoration: none; }
