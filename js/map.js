@@ -33,7 +33,8 @@ var eRateMap = {
 	},
 	switchLayer: function(event) {
 		
-		var tileName = event.target.id;
+		var tileName = event.target.id,
+			mapDesc = event.target.getAttribute('href');
 
 		event.preventDefault();
 		
@@ -45,8 +46,8 @@ var eRateMap = {
 		$('.list-layerSwitch').find('.active').removeClass('active');
 		$('#'+tileName).addClass('active');
 		
-		$('.map-desc').addClass('hide');
-		$('#content-main').find('#desc-'+tileName).removeClass('hide');	
+		$('#content-main').find('.map-desc').addClass('hide');
+		$(mapDesc).removeClass('hide');	
 	},
 	getMapData: function(o) {
 		var data;
