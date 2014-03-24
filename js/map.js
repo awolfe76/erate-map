@@ -37,16 +37,16 @@ var eRateMap = {
 
 		event.preventDefault();
 		
-		$('.list-layerSwitch').find('.active').removeClass('active');
-		$('#'+tileName).addClass('active');
-		
 		eRateMap.activeLayerGroup.clearLayers();
 		eRateMap.addLayers(event.data.map, eval(tileName + "_TL"), eval(tileName + "_GL"));
 
 		L.mapbox.gridControl(eval(tileName + "_GL").on('mousemove', eRateMap.getMapData));
 		
-		$('.map-desc').hide();
-		$('#desc-'+tileName).show();	
+		$('.list-layerSwitch').find('.active').removeClass('active');
+		$('#'+tileName).addClass('active');
+		
+		$('.map-desc').addClass('hide');
+		$('#content-main').find('#desc-'+tileName).removeClass('hide');	
 	},
 	getMapData: function(o) {
 		var data;
