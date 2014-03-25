@@ -40,14 +40,16 @@
                     mapDesc = event.target.getAttribute('href');
 
                 event.preventDefault();
-
+				
+				eRateMap.clearMapData();
                 eRateMap.activeLayerGroup.clearLayers();
                 eRateMap.addLayers(event.data.map, tile_TL, tile_GL);
 
                 $('.list-layerSwitch').find('.active').removeClass('active');
                 $('#' + targetID).addClass('active');
 
-                $('#content-main').find('.map-desc').addClass('hide');
+                // Show Map Description
+				$('#content-main').find('.map-desc').addClass('hide');
                 $(mapDesc).removeClass('hide');
             },
             getMapData: function (o) {
@@ -65,11 +67,14 @@
                     $('#stat-totSchools').text(data.TOTAL_SCHO);
                     $('#stat-fiber').text(data.WITH_FIBER);
 
-                } else { // Reset the text labels
-                    $('#stat-state').text('--');
-                    $('.dl-stats').find('span').text('-----');
+                } else { 
+                    eRateMap.clearMapData();
                 }
-            }
+            },
+			clearMapData: function () {
+				$('#stat-state').text('--');
+                $('.dl-stats').find('span').text('-----');
+			}
         };
 
     eRateMap.init();
