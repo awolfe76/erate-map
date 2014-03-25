@@ -33,9 +33,10 @@ footer { border-top: 1px solid #DDDDDD; font-size: 14px; margin-top: 50px; paddi
 .dl-stats dd { font-size: 18px; font-weight: 600; line-height: normal; margin-bottom: 10px; }
 
 /* Map */
-.map-box { border: 1px solid #DADADA; box-shadow: 0 0 4px 1px #DADADA; margin-bottom: 20px; padding: 2px; }
-.map-header { background-color: #F6F6F6; box-shadow: 0 -3px 3px -2px rgba(128, 128, 128, 0.2) inset; font-size: 12px; padding: 10px 10px 0; }
-.map-header .help-block { color: #51545B; float: right; font-style: italic; margin-top: 2px; }
+.map-box { border: 1px solid #DADADA; box-shadow: 0 0 4px 1px #DADADA; margin-bottom: 20px; /*padding: 2px;*/ }
+.map-footer { background-color: #F6F6F6; box-shadow: 3px -3px 0 -2px rgba(128, 128, 128, 0.2) inset; font-size: 12px; padding: 10px 10px 0; text-align: center; }
+.map-footer .help-block { color: #51545B; float: right; font-style: italic; margin-top: 2px; }
 #map { height: 200px; width: 100%; }
 .map-legend { margin: 15px auto 0; width: 250px; }
+.map-legend th { white-space: nowrap; }
 .map-legend span {display: block; float: right; height: 15px; width: 30px; }
