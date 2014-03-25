@@ -15,7 +15,7 @@
                 var map = L.mapbox.map('map').setView([38.82, -94.96], 3),
                     hash = L.hash(map);
 
-                L.control.fullscreen().addTo(map);
+                //L.control.fullscreen().addTo(map);
                 map.scrollWheelZoom.disable();
 
                 this.activeLayerGroup = new L.LayerGroup();
@@ -30,7 +30,7 @@
                 eRateMap.activeLayerGroup.addLayer(layer_GL);
                 //eRateMap.activeLayerGroup.addLayer(congrDist_GC);
                 eRateMap.activeLayerGroup.addTo(map);
-                L.mapbox.gridControl(layer_GL.on('mousemove', eRateMap.getMapData));
+                L.mapbox.gridControl(layer_GL.on('click', eRateMap.getMapData));
             },
             switchLayer: function (event) {
 
