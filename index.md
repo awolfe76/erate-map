@@ -14,9 +14,9 @@ This is an interactive map that shows, by County, the percentage of schools with
 </div>
 
 <div id="desc-schoolDist" class="map-desc hide" markdown="1">
-#### School District
+#### Unified School District
 
-This is an interactive map that shows, by School District, the percentage of schools with greater than 100 students that are passed, within 200 meters, by consumer-ready fiber facilities (=>100Mbps).  It does not show what percent of schools actually subscribe to high-speed data services. These figures are based on data from the National Broadband Map (June 2013) and NCES Public School Data.
+This is an interactive map that shows, by Unified School District, the percentage of schools with greater than 100 students that are passed, within 200 meters, by consumer-ready fiber facilities (=>100Mbps).  It does not show what percent of schools actually subscribe to high-speed data services. These figures are based on data from the National Broadband Map (June 2013) and NCES Public School Data.
 </div>
 
 - - -
