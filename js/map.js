@@ -57,6 +57,14 @@
             },
             getMapData: function (o) {
                 var data;
+				
+				function toTitleCase (str) {
+					str = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+				        return letter.toUpperCase();
+				    });
+					
+					return str;
+				}
 
                 if (o.data !== undefined) {
                     data = o.data;
@@ -64,8 +72,8 @@
                     // Populate stats
                     $('#stat-geography').text(data.GEOGRAPHY_);
                     $('#stat-geoID').text(data.GEOGRAP_01);
-                    $('#stat-geoDesc').text(data.GEOGRAP_02);
-                    $('#stat-state').text(data.STATE);
+                    $('#stat-state').text(toTitleCase(data.STATE));
+					$('#stat-geoDesc').text(toTitleCase(data.GEOGRAP_02));
                     $('#stat-pctSchool').text(data.PCT_SCHOOL);
                     $('#stat-totSchools').text(data.TOTAL_SCHO);
                     $('#stat-fiber').text(data.WITH_FIBER);
