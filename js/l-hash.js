@@ -14,48 +14,67 @@
     };
 
     L.Hash.parseHash = function (hash) {
+
         if (hash.indexOf('#') === 0) {
             hash = hash.substr(1);
         }
         var args = hash.split("/");
 
         if (args.length == 3) {
-            var zoom = parseInt(args[0], 10),
-			lat = parseFloat(args[1]),
-			lon = parseFloat(args[2]);
-            if (isNaN(zoom) || isNaN(lat) || isNaN(lon)) {
-                return false;
-            } else {
+            var pZoom = parseInt(args[0], 10);
+			var pLat = parseFloat(args[1]);
+			var pLon = parseFloat(args[2]);
+						
+            if (isNaN(pZoom) || isNaN(pLat) || isNaN(pLon)) {
                 return {
-                    center: new L.LatLng(lat, lon),
-                    zoom: zoom
+                    center: new L.LatLng(this.defLat, this.defLon),
+                    zoom: this.defZoom,
+					layer: this.layer
+                };
+            } else {                
+				return {
+                    center: new L.LatLng(pLat, pLon),
+                    zoom: pZoom, 
+					layer: this.layer
                 };
             }
-        } else if (args.length == 4) {
-            var zoom = parseInt(args[0], 10),
-			lat = parseFloat(args[1]),
-			lon = parseFloat(args[2]),
-            layer = args[3];
-            if (isNaN(zoom) || isNaN(lat) || isNaN(lon)) {
-                return false;
+        } else if (args.length >= 4) {
+            var pZoom = parseInt(args[0], 10);
+			var pLat = parseFloat(args[1]);
+			var pLon = parseFloat(args[2]);
+            var pLayer = args[3];
+			
+			if (pLayer == '') {
+				pLayer = this.layer;
+			}
+			
+            if (isNaN(pZoom) || isNaN(pLat) || isNaN(pLon)) {
+                return {
+                    center: new L.LatLng(this.defLat, this.defLon),
+                    zoom: this.defZoom,
+					layer: this.layer
+                };
             } else {
                 return {
-                    center: new L.LatLng(lat, lon),
-                    zoom: zoom,
-                    layer: layer
+                    center: new L.LatLng(pLat, pLon),
+                    zoom: pZoom,
+                    layer: pLayer
                 };
             }
         } else {
-            return false;
+            return {
+				center: new L.LatLng(this.defLat, this.defLon),
+				zoom: this.defZoom,
+				layer: this.layer
+			};
         }
     };
 
-    L.Hash.formatHash = function (map) {
+    L.Hash.formatHash = function (map, layer) {
         var center = map.getCenter(),
 		    zoom = map.getZoom(),
-		    precision = Math.max(0, Math.ceil(Math.log(zoom) / Math.LN2)),
-            layer = this.layer;
-
+		    precision = Math.max(0, Math.ceil(Math.log(zoom) / Math.LN2))
+		
         return "#" + [zoom,
 			center.lat.toFixed(precision),
 			center.lng.toFixed(precision),
@@ -69,9 +88,14 @@
 
 	    parseHash: L.Hash.parseHash,
 	    formatHash: L.Hash.formatHash,
+		
+		defLat: 38.82, 
+		defLon: -94.96, 
+		defZoom: 4,
+	    layer: null,
 
-	    init: function (map) {
-	        this.map = map;
+	    init: function (map, defLat, defLon, defZoom) {	        		
+			this.map = map;
 
 	        // reset the hash
 	        this.lastHash = null;
@@ -80,13 +104,11 @@
 	        if (!this.isListening) {
 	            this.startListening();
 	        }
-	    },
 
-	    layer: null,
+	    },
 
 	    setLayer: function (ly) {
 	        this.layer = ly;
-	        this.onMapMove(this.map);
 	    },
 
 	    removeFrom: function (map) {
@@ -100,6 +122,14 @@
 
 	        this.map = null;
 	    },
+		
+		updateHash: function () {
+	        var hash = this.formatHash(this.map, this.layer);
+	        if (this.lastHash != hash) {
+	            location.replace(hash);
+	            this.lastHash = hash;
+	        }
+	    },
 
 	    onMapMove: function () {
 	        // bail if we're moving the map (updating from a hash),
@@ -108,17 +138,14 @@
 	        if (this.movingMap || !this.map._loaded) {
 	            return false;
 	        }
-
-	        var hash = this.formatHash(this.map);
-	        if (this.lastHash != hash) {
-	            location.replace(hash);
-	            this.lastHash = hash;
-	        }
+			
+			this.updateHash();
 	    },
 
 	    movingMap: false,
 	    update: function () {
-	        var hash = location.hash;
+		
+			var hash = location.hash;
 	        if (hash === this.lastHash) {
 	            return;
 	        }
@@ -142,6 +169,7 @@
 	    onHashChange: function () {
 	        // throttle calls to update() so that they only happen every
 	        // `changeDefer` ms
+		
 	        if (!this.changeTimeout) {
 	            var that = this;
 	            this.changeTimeout = setTimeout(function () {
@@ -175,8 +203,6 @@
 	        }
 	        this.isListening = false;
 	    }
-
-
 
 	};
     L.hash = function (map) {
