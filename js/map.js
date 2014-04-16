@@ -71,7 +71,8 @@
 
                 //eRateMap.activeLayerGroup.addLayer(congrDist_GC);
                 eRateMap.activeLayerGroup.addTo(map);                
-                L.mapbox.gridControl(layer_GL.on('mouseover', eRateMap.getMapData));			
+                L.mapbox.gridControl(layer_GL.on('mouseover', eRateMap.getMapData));
+				L.mapbox.gridControl(layer_GL.on('click', eRateMap.getMapData));			
             },
             switchLayer: function (event) {
 
