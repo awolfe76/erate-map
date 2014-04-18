@@ -12,8 +12,8 @@
         //schoolDist_TL: L.mapbox.tileLayer('computech.hin0bi84'),
         //schoolDist_GL: L.mapbox.gridLayer('computech.hin0bi84')
         
-        fcc_county_TL: L.mapbox.tileLayer('fcc.a23uwhfr'),
-        fcc_county_GL: L.mapbox.gridLayer('fcc.a23uwhfr')
+        cnty_TL: L.mapbox.tileLayer('fcc.a23uwhfr'),
+        cnty_GL: L.mapbox.gridLayer('fcc.a23uwhfr')
     },
         eRateMap = {
 			hash: null,
@@ -38,7 +38,7 @@
 
                 // get url hash and set layers
                 var urlHash = window.location.hash;                
-				var urlLayer = "fcc_county";
+				var urlLayer = "cnty";
                 
                 if (urlHash.indexOf('#') === 0) {
                     urlHash = urlHash.substr(1);
@@ -62,8 +62,8 @@
                 //$('.list-layerSwitch').find('.active').removeClass('active');
                 //$('#' + urlLayer).addClass('active');
 
-                //$('#content-main').find('.map-desc').addClass('hide');
-                //$('#desc-' + urlLayer).removeClass('hide');                
+                $('#content-main').find('.map-desc').addClass('hide');
+                $('#desc-' + urlLayer).removeClass('hide');                
 
                 // onclick for layerSwitch
                 $('.list-layerSwitch').on('click', 'li', {
