@@ -4,6 +4,7 @@
         <h2>E-Rate Map</h2>
         <div class="map-box">
             <div id="map"></div>
+            <!--
             <div class="map-footer"> View Schools by:
                 <ul class="list-layerSwitch list-unstyled list-inline">
                     <li><a href="#desc-congrDist" id="congrDist" class="active">Congressional District</a></li>
@@ -12,6 +13,7 @@
                 </ul>
                 <p class="help-block">Click to display results.</p>
             </div>
+            -->
         </div>
     </section>
     <div class="row">
@@ -21,19 +23,24 @@
                 <dd><span id="stat-state">----</span></dd>
                 <dt>Geography Description</dt>
                 <dd><span id="stat-geoDesc">----</span></dd>
+                <!--
                 <dt>FIPS Code</dt>
                 <dd><span id="stat-geoID">----</span></dd>
+                -->
+                <dt>Total Students in County</dt>
+                <dd><span id="stat-totSchools">----</span></dd>
             </dl>
         </section>
         <section class="col-xs-6 col-sm-4 col-med-4">
             
             <dl class="dl-stats dl-inline">
-                <dt>Total Schools in Geography</dt>
-                <dd><span id="stat-totSchools">----</span></dd>
-                <dt>Number of Schools with Likely Fiber Access</dt>
-                <dd><span id="stat-fiber">----</span></dd>
-                <dt>% of Schools with Likely Fiber Access</dt>
-                <dd><span id="stat-pctSchool">----</span></dd>
+                
+                <dt>% of Schools with Fiber Access</dt>
+                <dd><span id="stat-pctFiberTrue">----</span></dd>
+                <dt>% of Schools without Fiber Access</dt>
+                <dd><span id="stat-pctFiberFalse">----</span></dd>
+                <dt>% of Schools not reporting Fiber Access</dt>
+                <dd><span id="stat-pctFiberNull">----</span></dd>
             </dl>
         </section>
         <div class="col-xs-12 col-sm-4 col-med-4">
@@ -43,20 +50,16 @@
                 </caption>
                 <tbody>
                     <tr>
-                        <th>&lt; 25%</th>
-                        <td><span style="background-color: #cce0d6"> </span></td>
+                        <th>Mostly Connected (> 50% Fiber)</th>
+                        <td><span style="background-color: #aeba88"> </span></td>
                     </tr>
                     <tr>
-                        <th>&ge; 25% and &lt; 50%</th>
-                        <td><span style="background-color: #99c1ad"> </span></td>
+                        <th>Mostly Unconnected (< 50% Fiber)</th>
+                        <td><span style="background-color: #8da5c0"> </span></td>
                     </tr>
                     <tr>
-                        <th>&ge; 50% and &lt; 75%</th>
-                        <td><span style="background-color: #4c9370"> </span></td>
-                    </tr>
-                    <tr>
-                        <th>&ge; 75%</th>
-                        <td><span style="background-color: #006633"> </span></td>
+                        <th>Mostly Unknown (Not Enough Data)</th>
+                        <td><span style="background-color: #b1b1b1"> </span></td>
                     </tr>
                 </tbody>
             </table>
