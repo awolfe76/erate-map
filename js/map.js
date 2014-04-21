@@ -121,32 +121,23 @@
                     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     return parts.join(".");
                 }
+				
+				function isDefined (v) {
+					return typeof v !== "undefined"; 	
+				} 
 
                 if (o.data !== undefined) {
                     data = o.data;
 
                     // Populate stats
-                    /*
-                    $('#stat-geography').text(data.GEOGRAPHY_);
-                    $('#stat-geoID').text(data.GEOGRAP_01);
-                    $('#stat-state').text(toTitleCase(data.STATE));
-                    $('#stat-geoDesc').text(toTitleCase(data.GEOGRAP_02));
-                    $('#stat-pctSchool').text(data.PCT_SCHOOL);
-                    $('#stat-totSchools').text(data.TOTAL_SCHO);
-                    $('#stat-fiber').text(data.WITH_FIBER);
-                    */
 
-                    var geoDesc = data.uni_district_name != undefined ? data.uni_district_name : '';
-					var elDistrict = data.el_district_name != undefined ? data.el_district_name : '';
-					var secDistrict = data.sec_district_name != undefined ? '<br>' + data.sec_district_name : '';
-					var tot_students = data.tot_students;
-                    var pct_fiber_true = data.pct_fiber_true;
-                    var pct_fiber_false = data.pct_fiber_false;
-                    var pct_fiber_null = data.pct_fiber_null;
-
-                    if (pct_fiber_true === undefined) { pct_fiber_true = 0; }
-                    if (pct_fiber_false === undefined) { pct_fiber_false = 0; }
-                    if (pct_fiber_null === undefined) { pct_fiber_null = 0; }
+                    var geoDesc = isDefined(data.uni_district_name) ? data.uni_district_name : '';
+					var elDistrict = isDefined(data.el_district_name) ? data.el_district_name : '';
+					var secDistrict = isDefined(data.sec_district_name) ? '<br>' + data.sec_district_name : '';
+					var tot_students = isDefined(data.tot_students) ? data.tot_students : '';
+                    var pct_fiber_true = isDefined(data.pct_fiber_true) ? data.pct_fiber_true : 0;
+                    var pct_fiber_false = isDefined(data.pct_fiber_false) ? data.pct_fiber_false : 0;
+                    var pct_fiber_null = isDefined(data.pct_fiber_null) ? data.pct_fiber_null : 0;
                     
                     $('#stat-geoDesc').html(geoDesc + elDistrict + secDistrict);
                     $('#stat-totStudents').text(numberWithCommas(tot_students));
