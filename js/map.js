@@ -126,11 +126,10 @@
 					return typeof v !== "undefined"; 	
 				} 
 
-                if (o.data !== undefined) {
+                if (isDefined(o.data)) {
                     data = o.data;
 
                     // Populate stats
-
                     var geoDesc = isDefined(data.uni_district_name) ? data.uni_district_name : '';
 					var elDistrict = isDefined(data.el_district_name) ? data.el_district_name : '';
 					var secDistrict = isDefined(data.sec_district_name) ? '<br>' + data.sec_district_name : '';
