@@ -1,22 +1,19 @@
 {% include header.html %}
 <div id="content-main" class="container">
     <section>
-        <h2>E-Rate Map</h2>
+        <h2>E-rate Map</h2>
         <div class="map-box">
             <div id="map"></div>
-            <!--
-            <div class="map-footer"> View Schools by:
+            <div class="map-footer"> View Data By:
                 <ul class="list-layerSwitch list-unstyled list-inline">
-                    <li><a href="#desc-congrDist" id="congrDist" class="active">Congressional District</a></li>
-                    <li><a href="#desc-cnty" id="cnty">County</a></li>
-                    <li><a href="#desc-schoolDist" id="schoolDist">Unified School District</a></li>
+                    <li><a href="#schoolDist" id="schoolDist">School Districts</a></li>
+					<li><a href="#library" id="library">Libraries</a></li>
                 </ul>
-                <p class="help-block">Click to display results.</p>
+                <p class="help-block">Click/hover to display results.</p>
             </div>
-            -->
         </div>
     </section>
-    <div class="row">
+    <div class="row map-stats hide" id="stats-schoolDist">
         <section class="col-xs-6 col-sm-4 col-med-4">
             <dl class="dl-stats">                
                 <!--<dt>State:</dt>
@@ -31,10 +28,8 @@
                 <dd><span id="stat-totStudents">----</span></dd>
             </dl>
         </section>
-        <section class="col-xs-6 col-sm-4 col-med-4">
-            
-            <dl class="dl-stats dl-inline">
-                
+        <section class="col-xs-6 col-sm-4 col-med-4">            
+            <dl class="dl-stats dl-inline">                
                 <dt>% of Schools with Fiber Access</dt>
                 <dd><span id="stat-pctFiberTrue">----</span></dd>
                 <dt>% of Schools without Fiber Access</dt>
@@ -65,6 +60,42 @@
             </table>
         </div>
     </div>
+	<div class="row map-stats hide" id="stats-library">
+        <section class="col-xs-6 col-sm-4 col-med-4">
+            <dl class="dl-stats"> 
+                <dt>Library Name</dt>
+                <dd><span id="stat-libraryName">----</span></dd>
+            </dl>
+        </section>
+        <section class="col-xs-6 col-sm-4 col-med-4">            
+            <dl class="dl-stats dl-inline">   
+                <dt>Population Served</dt>
+                <dd><span id="stat-libraryPopulation">----</span></dd>
+            </dl>
+        </section>
+        <div class="col-xs-12 col-sm-4 col-med-4">
+            <table class="map-legend table">
+                <caption>
+                Libraries with Fiber
+                </caption>
+                <tbody>
+                    <tr>
+                        <th>Connected</th>
+                        <td><span style="background-color: #aeba88"> </span></td>
+                    </tr>
+                    <tr>
+                        <th>Unconnected</th>
+                        <td><span style="background-color: #8da5c0"> </span></td>
+                    </tr>
+                    <tr>
+                        <th>Unknown (No Data)</th>
+                        <td><span style="background-color: #b1b1b1"> </span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+	<div id="about"></div>
     {{ content }} 
 </div>
 {% include footer.html %}
