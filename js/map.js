@@ -163,6 +163,13 @@
 						var librarySystemName = isDefined(data.system_name) ? data.system_name : '';
 						var libraryType = isDefined(data.lib_type) ? data.lib_type : '';
 						
+						if (libraryType == 'CE') {
+							libraryType = 'Central';
+						}
+						else if (libraryType == 'BR') {
+							libraryType = 'Branch';
+						}
+						
 						$('#stat-libraryName').html(toTitleCase(libaryName));
 						$('#stat-libraryPopulation').text(numberWithCommas(libraryPopulation));	
 						$('#stat-librarySystemName').html(toTitleCase(librarySystemName));
