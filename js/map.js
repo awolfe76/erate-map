@@ -158,8 +158,8 @@
 						$('#stat-pctFiberNull').text(pct_fiber_null + '%');
 					}
 					else if (mapType == "library") {
-						var libaryName = isDefined(data.lib_name) ? data.lib_name : '';
-						var libraryPopulation = isDefined(data.lib_pop) ? data.lib_pop : '';
+						var libaryName = isDefined(data.libname) ? data.libname : '';
+						var libraryPopulation = isDefined(data.visits) ? data.visits : '';
 						
 						$('#stat-libraryName').html(toTitleCase(libaryName));
 						$('#stat-libraryPopulation').text(numberWithCommas(libraryPopulation));	
