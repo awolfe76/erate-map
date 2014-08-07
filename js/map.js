@@ -160,9 +160,13 @@
 					else if (mapType == "library") {
 						var libaryName = isDefined(data.libname) ? data.libname : '';
 						var libraryPopulation = isDefined(data.visits) ? data.visits : '';
+						var librarySystemName = isDefined(data.system_name) ? data.system_name : '';
+						var libraryType = isDefined(data.lib_type) ? data.lib_type : '';
 						
 						$('#stat-libraryName').html(toTitleCase(libaryName));
 						$('#stat-libraryPopulation').text(numberWithCommas(libraryPopulation));	
+						$('#stat-librarySystemName').html(toTitleCase(librarySystemName));
+						$('#stat-libraryType').html(toTitleCase(libraryType));
 					}
 
                 } else {
