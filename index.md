@@ -18,9 +18,9 @@ We recognize that the current version of this map only identifies connectivity t
 
 #### Community Engagement
 
-Can you help improve the data that drives this map?  The Commission has asked for comment to help identify the gap between schools' and libraries' current connectivity and the specific connectivity targets the Commission adopted in its E-rate Modernization Order.  Can you help by providing a district or school name that is not identified?  A school's NCES ID (found at [http://nces.ed.gov/ccd/schoolsearch/](http://nces.ed.gov/ccd/schoolsearch/))?  An individual school's connection technology (e.g., fiber, cable, T-1, wireless) or advertised download speed?  
+Can you help improve the data that drives this map?  The Commission has asked for comment to help identify the gap between schools’ and libraries’ current connectivity and the specific connectivity targets the Commission adopted in its E-Rate Modernization Order.  Can you help by providing a district or school name that is not identified?  A school’s NCES ID (found at [http://nces.ed.gov/ccd/schoolsearch/](http://nces.ed.gov/ccd/schoolsearch/))?  An individual school’s connection technology (e.g., fiber, cable, T-1, wireless) or advertised download speed?  
 
-Please submit your comments, which will be included in WC Docket Number 13-184, to [schoolfibermap@fcc.gov](schoolfibermap@fcc.gov).
+Please submit your comments, which will be included in the public record for WC Docket Number 13-184, to [schoolfibermap@fcc.gov](schoolfibermap@fcc.gov).  Those e-mailed comments will be used to periodically update this map.  All information submitted to that e-mail address, including names and e-mail and street addresses, will be publicly available via the web..
 </div>
 <div id="desc-library" class="map-desc hide" markdown="1">
 #### Libraries
