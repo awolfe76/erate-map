@@ -14,7 +14,7 @@ caption { font-weight: bold; }
 
 /* Header */
 header { background: #373A41; color:#FFF; margin: 0 0 20px; padding-bottom: 9px; min-height: 60px; position: fixed; top: 0; width: 100%; z-index:9999; }
-header a:link { color: #FFF; }
+header a:link, header a:visited { color: #FFF; }
 header nav>a { margin-top: 20px; }
 
 /* Footer */
