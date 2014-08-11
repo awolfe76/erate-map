@@ -21,7 +21,7 @@ header nav>a { margin-top: 20px; }
 footer { border-top: 1px solid #DDDDDD; font-size: 14px; margin-top: 30px; padding-top: 30px; }
 
 /* Main Content */
-#content-main { margin-top: 60px; }
+header+#content-main { margin-top: 60px; }
 
 /* Lists */
 .list-layerSwitch { display: inline-block; font-size: 15px; font-weight: 600; margin-left: 5px; }
@@ -41,3 +41,7 @@ footer { border-top: 1px solid #DDDDDD; font-size: 14px; margin-top: 30px; paddi
 .map-legend { margin: 10px auto 0; width: 250px; }
 .map-legend th { white-space: nowrap; }
 .map-legend span {display: block; float: right; height: 15px; width: 30px; }
+
+@media (max-width: 900px) {
+    .container { width: 900px; }
+}
