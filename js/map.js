@@ -29,7 +29,7 @@
                     defLon = -94.96,
                     defZoom = 4;
                                  
-                var map = L.mapbox.map('map', null, {minZoom: 2, maxZoom: 9, zoom: defZoom});              
+                var map = L.mapbox.map('map', null, {minZoom: 3, maxZoom: 10, zoom: defZoom});              
 				//	.setView([defLat, defLon], defZoom);
 
                 map.addLayer(mapLayers['base_TL']);
