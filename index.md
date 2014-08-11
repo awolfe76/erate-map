@@ -48,5 +48,6 @@ Consistent with that effort, and to better understand the current state of fiber
 
 Can you help improve the data that drives this map?  The Commission has asked for comment to help identify the gap between schools' and libraries' current connectivity and the specific connectivity targets the Commission adopted in its E-rate Modernization Order.  Can you help by providing the name of a library that is not identified?  A library's FSCS ID (found at [http://harvester.census.gov/imls/search/](http://harvester.census.gov/imls/search/))?  An individual library's connection technology (e.g., fiber, cable, T-1, wireless) or advertised download speed?  
 
-Please submit your comments, which will be included in WC Docket Number 13-184, to [libraryfibermap@fcc.gov](libraryfibermap@fcc.gov).
+Please submit your comments, which will be included in the public record for WC Docket Number 13-184, to [libraryfibermap@fcc.gov](libraryfibermap@fcc.gov). Those e-mailed comments will be used to periodically update this map. All information submitted to that e-mail address, including names and e-mail and street addresses, will be publicly available via the web.
+
 </div>
