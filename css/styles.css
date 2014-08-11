@@ -42,6 +42,12 @@ header+#content-main { margin-top: 60px; }
 .map-legend th { white-space: nowrap; }
 .map-legend span {display: block; float: right; height: 15px; width: 30px; }
 
+.map-desc {
+  border-top: 1px solid #ddd;
+  margin: 30px auto 0;
+  max-width: 600px;
+}
+
 @media (max-width: 900px) {
     .container { width: 900px; }
 }
